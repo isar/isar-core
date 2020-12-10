@@ -17,7 +17,7 @@ serde =  { version = "1.0.118", features = ["derive"] }
 serde_json = "1.0.58"
 serde_repr = "0.1.6"
 thiserror = "1.0.22"
-time = "0.2.22"
+time = "0.2.23"
 enum-ordinalize = "3.1.8"
 hashbrown = "0.9"
 
