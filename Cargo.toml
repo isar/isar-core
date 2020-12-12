@@ -20,7 +20,7 @@ enum-ordinalize = "3.1.8"
 hashbrown = "0.9"
 
 [dev-dependencies]
-cfg-if = "0.1.10"
+cfg-if = "1.0.0"
 tempfile = "3"
 float_next_after = "0.1.5"
 
