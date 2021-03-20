@@ -31,4 +31,4 @@ jobs:
       name: test encryption
       with:
         command: test
-        args: --features test-encryption
+        args: --verbose --features test-encryption
