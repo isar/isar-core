@@ -175,7 +175,7 @@ primitive_list_filter!(LongListContains, Long, i64, read_long_list);
 
 #[macro_export]
 macro_rules! string_filter_struct {
-    ($name:ident) => {
+    ($name:ident, $data_type:ident) => {
         paste! {
             #[derive(Clone)]
             pub struct [<$name Cond>] {
@@ -195,7 +195,7 @@ macro_rules! string_filter_struct {
                     } else {
                         value.map(|s| s.to_lowercase())
                     };
-                    if property.data_type == crate::object::data_type::DataType::String {
+                    if property.data_type == crate::object::data_type::DataType::$data_type {
                         Ok(Filter::$name([<$name Cond>] {
                             property,
                             value,
@@ -213,7 +213,7 @@ macro_rules! string_filter_struct {
 #[macro_export]
 macro_rules! string_filter {
     ($name:ident) => {
-        string_filter_struct!($name);
+        string_filter_struct!($name, String);
         paste! {
             impl Condition for [<$name Cond>] {
                 fn evaluate(&self, object: IsarObject, _: Option<&mut FilterCursors>) -> Result<bool> {
@@ -259,7 +259,7 @@ string_filter!(StringStartsWith);
 string_filter!(StringEndsWith);
 string_filter!(StringMatches);
 
-string_filter_struct!(StringListContains);
+string_filter_struct!(StringListContains, StringList);
 
 impl Condition for StringListContainsCond {
     fn evaluate(&self, object: IsarObject, _: Option<&mut FilterCursors>) -> Result<bool> {
